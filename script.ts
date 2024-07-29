@@ -25,41 +25,56 @@ async function main() {
     //         email: "sally@test1.com"
     //     }]
     // })
-    const user = await prisma.user.findMany({
+    // const user = await prisma.user.findMany({
+    //     where: {
+    //         // name: { in: ["Sally", "Kyle"] }
+    //         // age: { lt: 20 }
+    //         author: {
+    //             is: {
+    //                 age: 27
+    //             }
+    //         }
+    //         // writtenPosts: {
+    //         //     every: {
+    //         //         title: "Test"
+    //         //     }
+    //         // }
+
+    //         // userPreference: {
+    //         //     emailUpdates: false
+    //         // }
+
+    //         // NOT: {
+    //         //     email: { startsWith: "sally" }  
+    //         // }
+    //         // OR:
+    //         //     [
+    //         //         {
+    //         //             email: { startsWith: "sally" },
+    //         //         },
+    //         //         {
+    //         //             email: { endsWith: "@test1.com" }
+    //         //         }
+    //         //     ]
+    //     },
+    //     // orderBy: {
+    //     //     age: "desc"
+    //     // }
+    //     // take: 1,
+    //     // skip: 1 
+    //     // distinct: ["name"]
+    // })
+
+    const update = await prisma.user.updateMany({
         where: {
-            // name: { in: ["Sally", "Kyle"] }
-            // age: { lt: 20 }
-
-            writtenPosts: {
-                every: {
-                    title: "Test"
-                }
-            }
-
-            // userPreference: {
-            //     emailUpdates: false
-            // }
-
-            // NOT: {
-            //     email: { startsWith: "sally" }  
-            // }
-            // OR:
-            //     [
-            //         {
-            //             email: { startsWith: "sally" },
-            //         },
-            //         {
-            //             email: { endsWith: "@test1.com" }
-            //         }
-            //     ]
+            name: "Sally",
         },
-        // orderBy: {
-        //     age: "desc"
-        // }
-        // take: 1,
-        // skip: 1 
-        // distinct: ["name"]
+        data: {
+            name: "New Sally"
+        }
     })
+
+    const user = await prisma.user.findMany()
     console.log(user)
 }
 
